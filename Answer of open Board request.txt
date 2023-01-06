@@ -1,0 +1,132 @@
+{
+    "id": "62ffc36684c5f076839e061e",
+    "aaId": "62ffc3640bb03d8a6cb3f0a0",
+    "activityBlocked": false,
+    "avatarHash": "32fb1dbb3978f2928ada6c8f58fc0ee0",
+    "avatarUrl": "https://trello-members.s3.amazonaws.com/62ffc36684c5f076839e061e/32fb1dbb3978f2928ada6c8f58fc0ee0",
+    "bio": "",
+    "bioData": null,
+    "confirmed": true,
+    "fullName": "mai waly",
+    "idEnterprise": null,
+    "idEnterprisesDeactivated": [],
+    "idMemberReferrer": null,
+    "idPremOrgsAdmin": [
+        "62ffc4010df0578c9838df7a"
+    ],
+    "initials": "MW",
+    "memberType": "normal",
+    "nonPublic": {},
+    "nonPublicAvailable": true,
+    "products": [
+        10
+    ],
+    "url": "https://trello.com/maiwaly",
+    "username": "maiwaly",
+    "status": "disconnected",
+    "aaBlockSyncUntil": null,
+    "aaEmail": null,
+    "aaEnrolledDate": null,
+    "avatarSource": "none",
+    "credentialsRemovedCount": 0,
+    "domainClaimed": null,
+    "email": "mai.waly88@gmail.com",
+    "goldSunsetFreeTrialIdOrganization": null,
+    "gravatarHash": "d0bff1af7bd19b91f9d18cf46be21ef6",
+    "idBoards": [
+        "62ffc451a42dcd091e20db3f",
+        "63701c2320b15d016a89ab40",
+        "63712c000eba7700675e4345",
+        "63726e8794660501daeccf31"
+    ],
+    "idOrganizations": [
+        "62ffc4010df0578c9838df7a"
+    ],
+    "idEnterprisesAdmin": [],
+    "limits": {
+        "boards": {
+            "totalPerMember": {
+                "status": "ok",
+                "disableAt": 4500,
+                "warnAt": 3600
+            }
+        },
+        "orgs": {
+            "totalPerMember": {
+                "status": "ok",
+                "disableAt": 850,
+                "warnAt": 680
+            }
+        }
+    },
+    "loginTypes": [
+        "atlassian"
+    ],
+    "marketingOptIn": {
+        "optedIn": true,
+        "date": "2022-08-19T17:07:54.204Z"
+    },
+    "messagesDismissed": [],
+    "oneTimeMessagesDismissed": [
+        "sent-possible-new-signup-event",
+        "close-menu-of-first-board",
+        "free-trial-banner-confetti-62ffc4010df0578c9838df7a"
+    ],
+    "prefs": {
+        "privacy": {
+            "fullName": "public",
+            "avatar": "public"
+        },
+        "sendSummaries": true,
+        "minutesBetweenSummaries": 60,
+        "minutesBeforeDeadlineToNotify": 1440,
+        "colorBlind": false,
+        "locale": "en-US"
+    },
+    "trophies": [],
+    "uploadedAvatarHash": null,
+    "uploadedAvatarUrl": null,
+    "premiumFeatures": [
+        "additionalBoardBackgrounds",
+        "additionalStickers",
+        "butler",
+        "customBoardBackgrounds",
+        "customEmoji",
+        "customStickers",
+        "largeAttachments",
+        "plugins",
+        "savedSearches"
+    ],
+    "isAaMastered": true,
+    "ixUpdate": "75",
+    "boards": [
+        {
+            "id": "63712c000eba7700675e4345",
+            "name": "FWD Board",
+            "closed": false,
+            "idOrganization": "62ffc4010df0578c9838df7a",
+            "pinned": false
+        },
+        {
+            "id": "63701c2320b15d016a89ab40",
+            "name": "FWD board",
+            "closed": false,
+            "idOrganization": "62ffc4010df0578c9838df7a",
+            "pinned": false
+        },
+        {
+            "id": "62ffc451a42dcd091e20db3f",
+            "name": "Healthcare (Udacity project)",
+            "closed": false,
+            "idOrganization": "62ffc4010df0578c9838df7a",
+            "pinned": false
+        },
+        {
+            "id": "63726e8794660501daeccf31",
+            "name": "{seconfFWDcreateboard}",
+            "closed": false,
+            "idOrganization": "62ffc4010df0578c9838df7a",
+            "pinned": false
+        }
+    ]
+}

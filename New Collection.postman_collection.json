@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "a6ac837b-ced4-4f43-930f-b472255cb711",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23840783"
+	},
+	"item": [
+		{
+			"name": "Create Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"permissionLevel = private\", function () {\r",
+							"   pm.expect(pm.response.json().prefs.permissionLevel).to.be.equal(\"private\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"canBePublic is true\", function () {\r",
+							"  pm.expect(pm.response.json().prefs.canBePublic ).to.be.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"canInvite is true\", function () {\r",
+							"  pm.expect(pm.response.json().prefs.canInvite ).to.be.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/boards/?key={{APIKey}}&token={{APIToken}}&name={BoardForTest}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"boards",
+						""
+					],
+					"query": [
+						{
+							"key": "idOrganization",
+							"value": "FWD",
+							"disabled": true
+						},
+						{
+							"key": "key",
+							"value": "{{APIKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{APIToken}}"
+						},
+						{
+							"key": "name",
+							"value": "{BoardForTest}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Returns all opened boards",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var BoardLength=pm.response.json().boards.length;\r",
+							"console.log(BoardLength);\r",
+							"var FirstId=pm.response.json().boards[0].id;\r",
+							"var LastId=pm.response.json().boards[BoardLength-1].id;\r",
+							"console.log(\"First Id is \" +FirstId);\r",
+							"console.log(\"Last Id is \" +LastId);\r",
+							"pm.globals.set(\"FirstBoardID\", FirstId);\r",
+							"pm.globals.set(\"LastBoardID\", LastId);\r",
+							"pm.test(\"count mo. of boards is above 1\", function () {\r",
+							"\r",
+							"pm.expect(pm.response.json().boards.length).to.be.above(1);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/members/me?boards=open&key={{APIKey}}&token={{APIToken}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"members",
+						"me"
+					],
+					"query": [
+						{
+							"key": "boards",
+							"value": "open"
+						},
+						{
+							"key": "key",
+							"value": "{{APIKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{APIToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete A board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"board is removed successfully \", function () {\r",
+							"    pm.expect(pm.response.text()).to.contains(\"board is removed successfully\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/boards/{{DeletedBoardId}}?key={{APIKey}}&token={{APIToken}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"boards",
+						"{{DeletedBoardId}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{APIKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{APIToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response=pm.response.json();\r",
+							"const keys=Object.keys(response);\r",
+							"pm.test(\"check on id  key\",function(){\r",
+							"pm.expect(keys).to.be.contains(\"id\");\r",
+							"})\r",
+							"pm.test(\"check on name key\",function(){\r",
+							"pm.expect(keys).to.be.contains(\"name\");\r",
+							"})\r",
+							"pm.test(\"check on idBoard key\",function(){\r",
+							"pm.expect(keys).to.be.contains(\"idBoard\");\r",
+							"})\r",
+							"pm.test(\"verify closed parameter ==>closed is false.\",function(){\r",
+							"pm.expect(pm.response.json().closed).to.be.equal(false);\r",
+							"})\r",
+							"pm.test(\"verify limits parameter  ==>limits are empty object {}\",function(){\r",
+							"pm.expect(pm.response.json().limits).to.be.empty;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/lists?name={FWD New List}&idBoard=63712c000eba7700675e4345&key={{APIKey}}&token={{APIToken}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"lists"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{FWD New List}"
+						},
+						{
+							"key": "idBoard",
+							"value": "63712c000eba7700675e4345"
+						},
+						{
+							"key": "key",
+							"value": "{{APIKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{APIToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get lists on the board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var ListNo=pm.response.json().length;\r",
+							"console.log(ListNo);\r",
+							"pm.test(\"No of lists is 3\",function(){\r",
+							"pm.expect(ListNo).to.equal(3);\r",
+							"\r",
+							"})\r",
+							"pm.globals.set(\"FirstListID\", pm.response.json()[0].id);\r",
+							"pm.globals.set(\"LastListID\", pm.response.json()[ListNo-1].id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{BaseUrl}}/boards/63727e989f7d9a0092dd1769/lists?key={{APIKey}}&token={{APIToken}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"boards",
+						"63727e989f7d9a0092dd1769",
+						"lists"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{APIKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{APIToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Archive or unarchive a list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"var ResponseValue=pm.response.json().closed;\r",
+							"var queryparams=pm.request.url.query.get(\"value\");\r",
+							"let boolOutput = (queryparams === \"true\");\r",
+							"console.log(\"value  = \" + queryparams);\r",
+							"pm.test(\"closed & value are equal\", function () {\r",
+							"    pm.expect(ResponseValue).to.equal(boolOutput);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"checking set cookie value \", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Set-Cookie\")).to.contains(\"isEnterpriseAdmin%3Dfalse\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/lists/63727e989f7d9a0092dd1770/closed?key={{APIKey}}&token={{APIToken}}&value=false",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"lists",
+						"63727e989f7d9a0092dd1770",
+						"closed"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{APIKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{APIToken}}"
+						},
+						{
+							"key": "value",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
